@@ -15,4 +15,4 @@ RUN useradd -m nm-user
 
 ADD run.sh /
 EXPOSE 8080
-CMD ["/sbin/dumb-init", "/bin/sh", "/run.sh"]
+CMD ["/sbin/dumb-init", "/bin/bash", "/run.sh"]
