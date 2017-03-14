@@ -4,16 +4,20 @@ set -e
 
 echo URL ${URL}
 echo WGET_OPTIONS \"${WGET_OPTIONS}\"
+echo WGET_USERNAME ${WGET_USERNAME}
+echo WGET_PASSWORD $(test ! -z ${WGET_PASSWORD} && echo hidden)
 echo ENVIRONMENT ${ENVIRONMENT}
 echo APP_NAME ${APP_NAME}
 echo VERSION ${VERSION}
 echo JAVA_OPTIONS \"${JAVA_OPTIONS:-}\"
-echo AWS_ACCESS_KEY ${AWS_ACCESS_KEY}
-echo AWS_SECRET_KEY ${AWS_SECRET_KEY}
+echo AWS_ACCESS_KEY $(test ! -z ${AWS_ACCESS_KEY} && echo hidden)
+echo AWS_SECRET_KEY $(test ! -z ${AWS_SECRET_KEY} && echo hidden)
 echo AWS_REGION ${AWS_REGION}
 echo AWS_BUCKET ${AWS_BUCKET}
 
 WGET_COMMON_OPTIONS='-q --timeout=5 -O /home/nm-user/app.jar'
+test ! -z ${WGET_USERNAME} && WGET_OPTIONS="${WGET_OPTIONS} --user='${WGET_USERNAME}'"
+test ! -z ${WGET_PASSWORD} && WGET_OPTIONS="${WGET_OPTIONS} --password='${WGET_PASSWORD}'"
 APP_COMMON_PATH="${APP_NAME}/${ENVIRONMENT}/${APP_NAME}_${VERSION}.jar"
 WGET_RCODE=0
 
