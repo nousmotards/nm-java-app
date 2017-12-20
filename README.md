@@ -5,7 +5,7 @@ Container build to run Java application on Nousmotards infra.
 
 This image can be used for other scenario. Here are the principal advantages:
 * Light
-* Based on Debian
+* Based on Alpine
 * Automatic jar application download at boot
 * Failback solution based on AWS to retrieve jar application
 
